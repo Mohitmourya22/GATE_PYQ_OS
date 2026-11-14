@@ -1,0 +1,35 @@
+@import 'katex/dist/katex.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 244 246 251; --surface: 255 255 255; --raised: 238 241 249; --line: 218 223 238;
+  --ink: 17 24 44; --muted: 99 109 135;
+  --brand: 59 108 246; --violet: 124 77 255; --cyan: 14 165 198;
+  --good: 22 163 74; --bad: 220 38 38; --warn: 217 119 6;
+}
+.dark {
+  --bg: 8 12 24; --surface: 16 22 40; --raised: 24 32 56; --line: 38 49 82;
+  --ink: 232 237 250; --muted: 143 155 189;
+  --brand: 96 140 255; --violet: 150 118 255; --cyan: 56 200 230;
+  --good: 52 211 153; --bad: 248 113 113; --warn: 251 191 36;
+}
+
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { @apply bg-bg text-ink font-sans antialiased; min-height: 100vh;
+  background-image: radial-gradient(900px 400px at 85% -10%, rgb(var(--violet) / .14), transparent),
+                    radial-gradient(700px 360px at -10% 0%, rgb(var(--brand) / .12), transparent);
+  background-attachment: fixed; }
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-surface/80 backdrop-blur p-5; }
+  .glass { @apply rounded-2xl border border-line bg-surface/60 backdrop-blur-xl; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-raised px-4 py-2 text-sm font-medium transition hover:border-brand/60 active:scale-[.98] disabled:opacity-40 disabled:pointer-events-none; }
+  .btn-primary { @apply border-transparent bg-gradient-to-r from-brand to-violet text-white hover:opacity-90; }
+  .input { @apply w-full rounded-xl border border-line bg-raised px-3 py-2 text-sm outline-none transition focus:border-brand; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-line bg-raised px-2.5 py-0.5 text-xs text-muted; }
+  .h1 { @apply text-3xl font-extrabold tracking-tight sm:text-4xl; }
+  .h2 { @apply text-xl font-bold tracking-tight; }
+}
